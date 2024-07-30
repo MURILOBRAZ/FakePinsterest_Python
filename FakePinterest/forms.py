@@ -1,7 +1,7 @@
 #Criar Formularios do nosso site
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from FakePinterest.models import Usuario
 
@@ -22,3 +22,7 @@ class FormCriarConta(FlaskForm):
 
         if usuario:
             return ValidationError("Email ja cadastrado, faça login para continuar")
+        
+class FormFoto(FlaskForm):
+    foto = FileField("Foto", validators=[DataRequired()])
+    botao_confirmacao = SubmitField("Enviar")
